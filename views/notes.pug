@@ -1,0 +1,15 @@
+//- notes.pug
+extends layout
+block content
+    h1="Note Editor"
+    div
+        textarea
+        script
+            input#save(name="save" value="Save" type="submit")
+            script.
+                $('#save').click(function () {
+                    $.post('Alert')
+                });
+        a.btn.btn-primary.btn-lg(href="/notes" role="button") DELETE
+    footer.footer
+        p CIS 385

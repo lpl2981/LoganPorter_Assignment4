@@ -10,7 +10,15 @@ const notesListByDate = function (req, res) {
         .status(200)
         .json({"status" : "success"});
 };
-const notesReadOne = function (req, res) {
+const notesReadOne = function(req, res) {
+    note
+        .findById(req.params.noteid)
+        .exec(err, location) => {
+            res
+                .status(200)
+                .json(location);
+        }
+};
     res
         .status(200)
         .json({"status" : "success"});

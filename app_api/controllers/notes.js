@@ -12,7 +12,7 @@ const notesListByDate = function (req, res) {
 };
 const notesReadOne = function (req, res) {
     note
-        .findById(noteid)
+        .findById(req.params.noteid)
         .exec(function (err, note) {
             if (note) {
                 console.log(note)
@@ -35,10 +35,9 @@ const notesDeleteOne = function (req, res) {
         .json({"status" : "success"});
 };
 
-module.exports = {
-    notesListByDate,
-    notesCreate,
-    notesReadOne,
-    notesUpdateOne,
-    notesDeleteOne
-};
+module.exports.notesListByDate = notesListByDate;
+module.exports.notesCreate = notesCreate;
+module.exports.notesReadOne = notesReadOne;
+module.exports.notesUpdateOne = notesUpdateOne;
+module.exports.notesDeleteOne = notesDeleteOne;
+

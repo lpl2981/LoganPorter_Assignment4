@@ -11,7 +11,7 @@ router.get('/notes', ctrlNotes.notes);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Assignment 3 - Static Webpage' });
+  res.render('index', { title: 'Assignment 4 - Dynamic Webpage' });
 });
 
 module.exports = router;

@@ -15,9 +15,13 @@ const notesReadOne = function (req, res) {
         .findById(req.params.noteid)
         .exec(function (err, note) {
             if (note) {
-                console.log(note)
+                console.log(note);
             } else if (err){
-                console.log(err)
+                res
+                    .status(404)
+                    .json({
+                        "message": "locationid not found"
+                    });
             }
         });
     res

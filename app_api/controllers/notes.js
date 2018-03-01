@@ -1,22 +1,38 @@
 const mongoose = require('mongoose');
 const note = mongoose.model('notes');
+const request = require('request');
+const apiOptions = {
+    server: 'http://localhost:3000'
+};
+const _renderList = function(req, res){
+    res.render('list', { title: 'List of Notes' });
+};
+const notelist = function(req, res){
+    _renderList(req, res);
+};
+
+if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = 'https://pure-temple-67771.herokuapp.com';
+}
+
 const notesCreate = function (req, res) {
     note.create({
         title: req.body.title,
         content: req.body.content
-    })
-    .exec(function (err, note) {
-        if (err){
-            res
-                .status(400)
-                .json(err);
-        }
-        else {
-            res
-                .status(200)
-                .json(note);
-        }
-    });
+        })
+        .exec(function (err, note) {
+            if (err) {
+                res
+                    .status(400)
+                    .json(err);
+            }
+            else {
+                res
+                    .status(200)
+                    .json(note);
+            }
+
+        });
 };
 const notesListByDate = function (req, res) {
     res
@@ -54,18 +70,31 @@ const notesUpdateOne = function (req, res) {
         .findById(req.params.noteid)
         .select('title content')
         .exec(function (err, note) {
-          if (err) {
-              res
-                  .status(404)
-                  .json(err);
-          }
-          else {
-              res
-                  .status(200)
-                  .json(note);
-          }
-    }
-        );
+            if (err) {
+                res
+                    .status(404)
+                    .json(err);
+            }
+            else {
+                res
+                    .status(200)
+                    .json(note);
+            }
+            note.title = req.body.title;
+            note.content = req.body.content;
+            note.save(function (err, note) {
+                if (err) {
+                    res
+                        .status(404)
+                        .json(err);
+                }
+                else {
+                    res
+                        .status(200)
+                        .json(note);
+                }
+            });
+        });
 };
 const notesDeleteOne = function (req, res) {
     res

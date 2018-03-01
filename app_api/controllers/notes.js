@@ -1,9 +1,22 @@
 const mongoose = require('mongoose');
 const note = mongoose.model('notes');
 const notesCreate = function (req, res) {
-    res
-        .status(200)
-        .json({"status" : "success"});
+    note.create({
+        title: req.body.title,
+        content: req.body.content
+    })
+    .exec(function (err, note) {
+        if (err){
+            res
+                .status(400)
+                .json(err);
+        }
+        else {
+            res
+                .status(200)
+                .json(note);
+        }
+    });
 };
 const notesListByDate = function (req, res) {
     res
@@ -15,18 +28,26 @@ const notesReadOne = function (req, res) {
         .findById(req.params.noteid)
         .exec(function (err, note) {
             if (note) {
-                console.log(note);
-            } else if (err){
-                res
+                  res
+                    .status(200)
+                    .console.log(note)
+                    .json(note);
+            }
+            else if (!note){
+                  res
+                    .status(404)
+                    .json({
+                      "message": "noteid not found"
+                      });
+            }
+            else if (err){
+                   res
                     .status(404)
                     .json({
                         "message": "locationid not found"
                     });
             }
         });
-    res
-        .status(200)
-        .json({"status" : "success"});
 };
 const notesUpdateOne = function (req, res) {
     res

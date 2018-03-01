@@ -4,8 +4,9 @@ const request = require('request');
 const apiOptions = {
     server: 'http://localhost:3000'
 };
-const _renderList = function(req, res){
+const _renderList = function(req, res, responseBody){
     res.render('list', { title: 'List of Notes' });
+    notes: responseBody
 };
 const notelist = function(req, res){
     _renderList(req, res);

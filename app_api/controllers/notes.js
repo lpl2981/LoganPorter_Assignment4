@@ -50,9 +50,22 @@ const notesReadOne = function (req, res) {
         });
 };
 const notesUpdateOne = function (req, res) {
-    res
-        .status(200)
-        .json({"status" : "success"});
+    note
+        .findById(req.params.noteid)
+        .select('title content')
+        .exec(function (err, note) {
+          if (err) {
+              res
+                  .status(404)
+                  .json(err);
+          }
+          else {
+              res
+                  .status(200)
+                  .json(note);
+          }
+    }
+        );
 };
 const notesDeleteOne = function (req, res) {
     res

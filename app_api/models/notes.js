@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var noteSchema = new mongoose.Schema({
-    Title: {
+    title: {
         type: String,
         required: true
     },
-    Content: String
+    content: String
 });
 
 mongoose.model('notes', noteSchema);

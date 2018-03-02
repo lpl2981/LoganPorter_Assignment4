@@ -1,12 +1,13 @@
 //- list.pug
 extends layout
 block content
-    h1="List of Notes"
+    h1= title
     div
         nav.pre-scrollable
-            ul
-                each val in notes
-                    li= val.Notes.Title
+             each val in notes
+                ul
+                    li
+                        a(href='/api/notes/' + val._id) val.Notes.Title
     a.btn.btn-primary.btn-lg(href="/notes" role="button") Add New Note
 
     footer.footer

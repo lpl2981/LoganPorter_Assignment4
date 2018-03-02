@@ -5,35 +5,8 @@ block content
     div
         nav.pre-scrollable
             ul
-                li
-                    a(href="/notes") Note 1
-
-                li
-                    a(href="/notes") Note 2
-
-                li
-                    a(href="/notes") Note 3
-
-                li
-                    a(href="/notes") Note 4
-
-                li
-                    a(href="/notes") Note 5
-
-                li
-                    a(href="/notes") Note 6
-
-                li
-                    a(href="/notes") Note 7
-                li
-                    a(href="/notes") Note 8
-
-                li
-                    a(href="/notes") Note 9
-
-                li
-                    a(href="/notes") Note 10
-
+                each val in notes
+                    li= val.Notes.Title
     a.btn.btn-primary.btn-lg(href="/notes" role="button") Add New Note
 
     footer.footer

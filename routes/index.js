@@ -4,10 +4,10 @@ const ctrlList = require('../routes/list');
 const ctrlNotes = require('../routes/notes');
 
 /* List page */
-router.get('/list', ctrlList.list);
+router.get('/list', ctrlList.noteslist);
 
 /* Note page */
-router.get('/notes', ctrlNotes.notes);
+router.get('/notes', ctrlNotes.note);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

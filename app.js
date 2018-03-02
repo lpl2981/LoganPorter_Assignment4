@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 require('./app_api/models/db');
 
 var index = require('./routes/index');
-const apiRoutes = require('./app_api/routes/notes');
+var apiRoutes = require('./app_api/routes/notes');
 
 var app = express();
 

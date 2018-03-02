@@ -1,6 +1,18 @@
 /* GET 'list' page */
-module.exports.noteslist = function(req, res){
-    const path = '/api/locations';
+const request = require('request');
+
+const apiOptions = {
+    server: 'http://localhost:3000'
+};
+if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = 'https://pure-temple-67771.herokuapp.com';
+}
+const _renderList = function(req, res, responseBody){
+    res.render('list', { title: 'List of Notes', notes: responseBody });
+};
+
+const noteslist = function(req, res){
+    const path = '/api/notes';
     const requestOptions = {
         url : apiOptions.server + path,
         method : 'GET',
@@ -9,12 +21,10 @@ module.exports.noteslist = function(req, res){
     request(
         requestOptions,
         (function (err, response, body) {
+            console.log(err, body);
             _renderList(req, res, body);
         })
     );
 };
-const list = function(req, res){
-    res.render('list', { title: 'List of Notes' });
-};
 
-module.exports.list = list;
+module.exports.noteslist = noteslist;

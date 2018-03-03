@@ -7,7 +7,7 @@ block content
              each val in notes
                 ul
                     li
-                        a(href='/api/notes/' + val._id) val.Notes.Title
+                        a(href='/notes/' + val._id)= val.title
     a.btn.btn-primary.btn-lg(href="/notes" role="button") Add New Note
 
     footer.footer

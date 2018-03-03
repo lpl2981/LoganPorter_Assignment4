@@ -6,10 +6,10 @@ block content
         form(method='POST' action='/notes')
             div.form-group
                 label(for='name') Title:
-                input#name.form-control(type='text', placeholder='Enter your note title (required)' name='title')
+                input#name.form-control(type='text', placeholder='Enter your note title (required)' name='title', value=notes.Notes.Title)
             div.form-group
                 label Content:
-                textarea.form-control(placeholder='Enter your text here (optional)' name='content')
+                textarea.form-control(placeholder='Enter your text here (optional)' name='content')=notes.Notes.Contents
             button.btn.btn-primary(type='submit') Delete
             button.btn.btn-primary(type='submit') Save
     footer.footer

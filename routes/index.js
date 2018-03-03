@@ -6,8 +6,12 @@ const ctrlNotes = require('../routes/notes');
 /* List page */
 router.get('/list', ctrlList.noteslist);
 
-/* Note page */
+/* Note editor page */
 router.get('/notes', ctrlNotes.note);
+
+/* Blank Note page */
+router.get('/blank_note', ctrlNotes.createNote);
+router.post('/blank_note', ctrlNotes.doCreateNote);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,5 +21,6 @@ router.get('/', function(req, res, next) {
 /* GET noteid. */
 router.get('/', ctrlList.noteslist);
 router.get('/notes/:noteid', ctrlNotes.note);
+
 
 module.exports = router;

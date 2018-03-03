@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const note = mongoose.model('notes');
 
 const notesCreate = function (req, res) {
+    console.log(req.body);
     note.create({
         title: req.body.title,
         content: req.body.content
@@ -17,14 +18,12 @@ const notesCreate = function (req, res) {
                     .status(200)
                     .json(note);
             }
-
         });
 };
 const notesListByDate = function (req, res) {
     note
         .find()
         .exec(function (err, note) {
-            console.log(note);
             if (note) {
                 res
                     .status(200)
@@ -50,7 +49,6 @@ const notesReadOne = function (req, res) {
     note
         .findById(req.params.noteid)
         .exec(function (err, note) {
-            console.log(note);
             if (note) {
                   res
                     .status(200)
@@ -104,9 +102,28 @@ const notesUpdateOne = function (req, res) {
         });
 };
 const notesDeleteOne = function (req, res) {
-    res
-        .status(200)
-        .json({"status" : "success"});
+    var noteid = req.params.noteid;
+    note
+        .findByIdAndRemove(noteid)
+        .exec(function (err, note) {
+            if (err) {
+                res
+                    .status(404)
+                    .json(err);
+                return;
+            }
+            res
+                .status(204)
+                .json(null);
+        })
+else
+    {
+        res
+            .status(404)
+            .json({
+                "message": "No locationid"
+            });
+    }
 };
 
 module.exports.notesListByDate = notesListByDate;

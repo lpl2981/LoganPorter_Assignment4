@@ -1,0 +1,16 @@
+//- notes.pug
+extends layout
+block content
+    h1="Note Editor"
+    div
+        form(method='post', action='', role='form')
+            div.form-group
+                label(for='title') Title:
+                input#title.form-control(type='text', placeholder='Enter your note title (required)', name='title')
+            div.form-group
+                label(for='content') Content:
+                textarea#content.form-control(placeholder='Enter your text here (optional)', name='content')
+            button.btn.btn-primary(type='submit') Delete
+            button.btn.btn-primary(type='submit') Save
+    footer.footer
+        p CIS 385

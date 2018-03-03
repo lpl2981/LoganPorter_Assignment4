@@ -110,21 +110,21 @@ const notesDeleteOne = function (req, res) {
                 res
                     .status(404)
                     .json(err);
-                return;
             }
-            res
-                .status(204)
-                .json(null);
-        })
-else
-    {
-        res
-            .status(404)
-            .json({
-                "message": "No locationid"
-            });
-    }
-};
+            else if (!note) {
+                res
+                    .status(204)
+                    .json(null);
+            }
+            else
+                {
+                res
+                    .status(404)
+                    .json({
+                        "message": "No locationid"
+                    });
+                }
+});
 
 module.exports.notesListByDate = notesListByDate;
 module.exports.notesCreate = notesCreate;

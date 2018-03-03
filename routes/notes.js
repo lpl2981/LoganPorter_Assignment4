@@ -49,14 +49,20 @@ const doCreateNote = function(req, res) {
 
 const doDeleteNote = function(req, res) {
         const path = '/api/notes/';
-
         const reqDelMethod = {
-            url: api.Options.server + path,
-            method: 'DELETE',
-
-        }
-}
+            url: apiOptions.server + path,
+            method: 'DELETE'
+        };
+        request(
+            reqDelMethod,
+            (function (err, res, body){
+                console.log(err, body);
+                })
+        );
+        res.render('blank_note');
+};
 
 module.exports.doCreateNote = doCreateNote;
+module.exports.doDeleteNote = doDeleteNote;
 module.exports.createNote = createNote;
 module.exports.note = note;

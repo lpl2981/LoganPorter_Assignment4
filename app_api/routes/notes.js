@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ctrlNotes = require('../controllers/notes');
 
-// locations
+// notes
 router
     .route('/notes')
     .get(ctrlNotes.notesListByDate)

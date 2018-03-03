@@ -41,7 +41,7 @@ const notesListByDate = function (req, res) {
                 res
                     .status(404)
                     .json({
-                        "message": "locationid not found"
+                        "message": "noteid not found"
                     });
             }
         });
@@ -67,7 +67,7 @@ const notesReadOne = function (req, res) {
                    res
                     .status(404)
                     .json({
-                        "message": "locationid not found"
+                        "message": "noteid not found"
                     });
             }
         });

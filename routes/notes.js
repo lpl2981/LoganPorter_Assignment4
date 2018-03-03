@@ -11,7 +11,7 @@ const _renderNote = function(req, res, responseBody){
     res.render('notes', { title: 'Note Editor', notes: responseBody });
 };
 
-const noteslist = function(req, res){
+const note = function(req, res){
     const path = '/api/notes';
     const requestOptions = {
         url : apiOptions.server + path,
@@ -26,9 +26,5 @@ const noteslist = function(req, res){
         })
     );
 };
-const notes = function(req, res) {
-    var notes = [{"name": "groceries"}];
-    //Call API to get array of data
-};
 
-module.exports.note = noteslist;
+module.exports.note = note;

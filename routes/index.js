@@ -14,4 +14,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Assignment 4 - Dynamic Webpage' });
 });
 
+/* GET noteid. */
+router.get('/', ctrlList.noteslist);
+router.get('/notes/:noteid', ctrlNotes.note);
+
 module.exports = router;

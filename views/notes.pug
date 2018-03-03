@@ -10,13 +10,7 @@ block content
             div.form-group
                 label Content:
                 textarea.form-control(placeholder='Enter your text here (optional)' name='content')
-            button.btn.btn-primary(type='cancel') Cancel
+            button.btn.btn-primary(type='submit') Delete
             button.btn.btn-primary(type='submit') Save
-        script
-            input#save(name="save" value="Save" type="submit")
-            script.
-                $('#save').click(function () {
-                    $.post('Alert')
-                });
     footer.footer
         p CIS 385

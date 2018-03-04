@@ -21,7 +21,6 @@ const noteslist = function(req, res){
     request(
         requestOptions,
         (function (err, response, body) {
-            console.log(err, body);
             _renderList(req, res, body);
         })
     );

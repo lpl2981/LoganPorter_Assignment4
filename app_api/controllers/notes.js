@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const note = mongoose.model('notes');
 
 const notesCreate = function (req, res) {
-    console.log(req.body);
     note.create({
         title: req.body.title,
         content: req.body.content
@@ -102,7 +101,8 @@ const notesUpdateOne = function (req, res) {
         });
 };
 const notesDeleteOne = function (req, res) {
-    var noteid = req.params.noteid;
+    console.log(req, res);
+    const noteid = req.params.noteid;
     note
         .findByIdAndRemove(noteid)
         .exec(function (err, note) {
@@ -120,7 +120,7 @@ const notesDeleteOne = function (req, res) {
                 res
                     .status(404)
                     .json({
-                        "message": "No locationid"
+                        "message": "No noteid"
                     });
             }
         });

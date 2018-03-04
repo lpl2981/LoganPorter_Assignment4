@@ -47,6 +47,22 @@ const doCreateNote = function(req, res) {
         res.render('blank_note');
 };
 
+const doUpdateNote = function(req, res) {
+    const path = '/api/notes/' + req.params.noteid;
+    const reqUpdMethod = {
+        url: apiOptions.server + path,
+        method: 'PUT',
+        json: {title: req.body.title, content: req.body.content}
+    };
+    request(
+        reqUpdMethod,
+        (function (err, res, body){
+            console.log(err, body);
+            _renderNote(req, res, body);
+        })
+    );
+};
+
 const doDeleteNote = function(req, res) {
         const path = '/api/notes/';
         const reqDelMethod = {
@@ -62,6 +78,7 @@ const doDeleteNote = function(req, res) {
         res.render('blank_note');
 };
 
+module.exports.doUpdateNote = doUpdateNote;
 module.exports.doCreateNote = doCreateNote;
 module.exports.doDeleteNote = doDeleteNote;
 module.exports.createNote = createNote;

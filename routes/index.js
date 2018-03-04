@@ -8,6 +8,7 @@ router.get('/list', ctrlList.noteslist);
 
 /* Note editor page */
 router.get('/notes', ctrlNotes.note);
+router.put('/notes', ctrlNotes.note);
 
 /* Blank Note page */
 router.get('/blank_note', ctrlNotes.createNote);

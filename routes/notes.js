@@ -1,5 +1,6 @@
 /* GET 'note' page */
 const request = require('request');
+const noteslist = require('./list');
 
 const apiOptions = {
     server: 'http://localhost:3000'
@@ -9,6 +10,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 const _renderNote = function(req, res, responseBody){
     res.render('notes', { title: 'Note Editor', notes: responseBody });
+};
+
+const _renderUpdatedNote = function(req, res, responseBody) {
+    //var noteId = req.params.noteid;
+    //res.redirect('http://localhost:3000/list');
+    noteslist.noteslist(req, res);
 };
 
 const note = function(req, res){
@@ -48,6 +55,7 @@ const doCreateNote = function(req, res) {
 };
 
 const doUpdateNote = function(req, res) {
+    console.log('You made it');
     const path = '/api/notes/' + req.params.noteid;
     const reqUpdMethod = {
         url: apiOptions.server + path,
@@ -56,9 +64,9 @@ const doUpdateNote = function(req, res) {
     };
     request(
         reqUpdMethod,
-        (function (err, res, body){
+        (function (err, response, body){
             console.log(err, body);
-            _renderNote(req, res, body);
+            _renderUpdatedNote(req, res, body);
         })
     );
 };
